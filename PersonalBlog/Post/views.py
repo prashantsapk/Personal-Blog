@@ -48,4 +48,47 @@ def loginview(request):
     return render(request,'login.html',{'loginobj':loginobj})
 
 def delete_post(request):
-    return redirect('homepage')
+   
+    if request.method=="POST":
+        id=request.POST.get('id')
+        post= Postathomepage.objects.get(id=id)
+        post.delete()
+        return redirect('homepage')
+
+
+
+
+def update_post(request):
+
+
+
+
+    
+    if request.method=='POST':
+        id = request.POST.get('id')
+        post = Postathomepage.objects.get(id=id)
+        updatepostobj = createpostform(instance=post)
+        return render(request,'editpost.html',{'updatepostobj':updatepostobj})
+
+  
+
+
+        
+        
+    
+
+    
+
+        
+    
+    
+    
+
+
+
+
+
+
+
+def commentview(request):
+    return render(request,'comment.html')

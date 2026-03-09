@@ -62,12 +62,25 @@
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ i.title }}</h5>
           <p class="card-text">{{ i.description }}</p>
-          <form method='POST'>
+
+          <form method="post" action={% url 'deletepost'%}>
             {% csrf_token %}
-            <button class="btn btn-primary me-md-2" type="sumbit" value={{i.id}}>Delete</button>
-            <button class="btn btn-primary me-md-2" type="button">Edit</button>
-          <button class="btn btn-primary me-md-2" type="button">Comment</button>
+          <input type="hidden" value={{i.id}} name='id'>
+          <button class="btn btn-primary me-md-2" type="sumbit">Delete</button>
           </form>
+
+          <form action="{% url 'updatepost'%}" method="post">
+            {% csrf_token %}
+          <input type="hidden" value={{i.id}} name='id'>
+          <button class="btn btn-primary me-md-2" type="sumbit">Edit</button>
+          </form>
+
+          <form action="" method="post">
+          <button class="btn btn-primary me-md-2" type="button"'>Comment</button>
+          </form>
+
+          
+          
           <br> Post id : #{{i.id}}
         </div>
 
