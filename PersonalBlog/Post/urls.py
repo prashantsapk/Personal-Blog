@@ -8,7 +8,7 @@ urlpatterns = [
     path('signup/',views.signupview,name='signup'),
     path('login/',views.loginview,name='login'),
     path('deletepost/',views.delete_post,name='deletepost'),
-    path('comment/',commentview,name='comment'),
+    path('comment/<int:id>/',commentview,name='comment'),
     path('createpost/',views.createpost,name='createpost'),
     path('updatepost/<int:id>/',views.update_post,name='updatepost'),
 ]

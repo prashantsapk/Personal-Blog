@@ -1,4 +1,9 @@
 {% extends 'layout.html' %}
 {% block content %}
-hi
+
+{% for i in commentobj %}
+{{i.comment}}
+{% endfor %}
+
+
 {% endblock content %}

@@ -74,10 +74,12 @@
           <button class="btn btn-primary me-md-2" type="sumbit">Edit</button>
           </form>
 
-          <form action="" method="post">
-          <button class="btn btn-primary me-md-2" type="button"'>Comment</button>
+          <form action="{% url 'comment' i.id %}" method="get">
+            {% csrf_token %}
+          <button class="btn btn-primary me-md-2" type="sumbit">Comment</button>
           </form>
 
+         
           
           
           <br> Post id : #{{i.id}}

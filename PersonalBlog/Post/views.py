@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Postathomepage
+from .models import Postathomepage,commentofpost
 from .forms import createpostform,signupform,loginform
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
@@ -76,5 +76,7 @@ def update_post(request,id):
     return render(request,'editpost.html',{'updatepostobj':updatepostobj})
   
 
-def commentview(request):
-    return render(request,'comment.html')
+def commentview(request,id):
+    commentobj= commentofpost.objects.get(id=id)
+
+    return render(request,'comment.html',{'commentobj':commentobj})
