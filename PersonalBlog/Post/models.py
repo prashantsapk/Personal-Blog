@@ -13,7 +13,7 @@ class Postathomepage(models.Model):
 
 #  A post can have many comments (one to many)
 class commentofpost(models.Model):
-    post=models.ForeignKey(Postathomepage,on_delete=models.CASCADE)
+    post=models.ForeignKey(Postathomepage,on_delete=models.CASCADE,related_name='comments')
     comment=models.TextField()
 
     def __str__(self):

@@ -77,6 +77,10 @@ def update_post(request,id):
   
 
 def commentview(request,id):
-    commentobj= commentofpost.objects.get(id=id)
+    
+    post = Postathomepage.objects.get(id=id)
+    commentobj=post.comments.all()
+   
+   
 
     return render(request,'comment.html',{'commentobj':commentobj})
