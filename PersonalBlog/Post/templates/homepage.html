@@ -69,9 +69,8 @@
           <button class="btn btn-primary me-md-2" type="sumbit">Delete</button>
           </form>
 
-          <form action="{% url 'updatepost'%}" method="post">
+          <form action="{% url 'updatepost' i.id %}" method="get">
             {% csrf_token %}
-          <input type="hidden" value={{i.id}} name='id'>
           <button class="btn btn-primary me-md-2" type="sumbit">Edit</button>
           </form>
 

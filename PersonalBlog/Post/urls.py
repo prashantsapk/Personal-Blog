@@ -10,5 +10,5 @@ urlpatterns = [
     path('deletepost/',views.delete_post,name='deletepost'),
     path('comment/',commentview,name='comment'),
     path('createpost/',views.createpost,name='createpost'),
-    path('updatepost/',views.update_post,name='updatepost'),
+    path('updatepost/<int:id>/',views.update_post,name='updatepost'),
 ]

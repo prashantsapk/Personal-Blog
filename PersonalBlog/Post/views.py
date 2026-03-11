@@ -58,37 +58,23 @@ def delete_post(request):
 
 
 
-def update_post(request):
-
-
-
-
+def update_post(request,id):
+   
     
     if request.method=='POST':
-        id = request.POST.get('id')
-        post = Postathomepage.objects.get(id=id)
+        post= Postathomepage.objects.get(id=id)
+        updatepostobj = createpostform(request.POST,instance=post)
+        updatepostobj.save()
+
+        return redirect('homepage')
+
+    else:
+        post= Postathomepage.objects.get(id=id)
         updatepostobj = createpostform(instance=post)
-        return render(request,'editpost.html',{'updatepostobj':updatepostobj})
 
+    
+    return render(request,'editpost.html',{'updatepostobj':updatepostobj})
   
-
-
-        
-        
-    
-
-    
-
-        
-    
-    
-    
-
-
-
-
-
-
 
 def commentview(request):
     return render(request,'comment.html')
