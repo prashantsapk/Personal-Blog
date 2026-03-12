@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Postathomepage,commentofpost
-from .forms import createpostform,signupform,loginform
+from .forms import createpostform,signupform,loginform,commentform
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 
@@ -77,10 +77,24 @@ def update_post(request,id):
   
 
 def commentview(request,id):
-    
-    post = Postathomepage.objects.get(id=id)
-    commentobj=post.comments.all()
+
+    if request.method=='POST':
+        newform = commentform(request.POST)
+        if newform.is_valid():
+            post = Postathomepage.objects.get(id=id)
+            comment = post.newform
+            comment.save()
+
+        
+
+       
+
+    else:
+        post = Postathomepage.objects.get(id=id)
+        commentobj=post.comments.all()
+        form = commentform()
+
    
    
 
-    return render(request,'comment.html',{'commentobj':commentobj})
+    return render(request,'comment.html',{'commentobj':commentobj,'form':form})

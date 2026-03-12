@@ -1,6 +1,7 @@
 from django import forms
-from .models import Postathomepage
+from .models import Postathomepage,commentofpost
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
+
 
 class createpostform(forms.ModelForm):
 
@@ -13,3 +14,9 @@ class signupform(UserCreationForm):
 
 class loginform(AuthenticationForm):
     pass
+
+class commentform(forms.ModelForm):
+
+    class Meta:
+        model = commentofpost
+        fields = ['comment']
