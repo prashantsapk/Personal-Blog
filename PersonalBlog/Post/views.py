@@ -3,6 +3,7 @@ from .models import Postathomepage,commentofpost
 from .forms import createpostform,signupform,loginform,commentform
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -81,10 +82,10 @@ def commentview(request,id):
     if request.method=='POST':
         newform = commentform(request.POST)
         if newform.is_valid():
+            commentobj = newform.save(commit=False)
             post = Postathomepage.objects.get(id=id)
-            comment = post.newform
-            comment.save()
-
+            commentobj.post = post
+            commentobj.save()
         
 
        
@@ -93,8 +94,10 @@ def commentview(request,id):
         post = Postathomepage.objects.get(id=id)
         commentobj=post.comments.all()
         form = commentform()
+        return render(request,'comment.html',{'commentobj':commentobj,'form':form,'post':post})
 
-   
-   
+    return redirect('homepage')
 
-    return render(request,'comment.html',{'commentobj':commentobj,'form':form})
+
+def profileview(request,id):
+    return render(request,'profilepage.html')
