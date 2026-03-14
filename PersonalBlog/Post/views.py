@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 
+@login_required
 def home(request):
     Postathomepageobj = Postathomepage.objects.all()
     return render(request,'homepage.html',{'Postathomepageobj':Postathomepageobj})
@@ -48,6 +49,7 @@ def loginview(request):
 
     return render(request,'login.html',{'loginobj':loginobj})
 
+@login_required
 def delete_post(request):
    
     if request.method=="POST":
@@ -58,7 +60,7 @@ def delete_post(request):
 
 
 
-
+@login_required
 def update_post(request,id):
    
     
@@ -76,7 +78,7 @@ def update_post(request,id):
     
     return render(request,'editpost.html',{'updatepostobj':updatepostobj})
   
-
+@login_required
 def commentview(request,id):
 
     if request.method=='POST':
@@ -99,5 +101,10 @@ def commentview(request,id):
     return redirect('homepage')
 
 
+@login_required
 def profileview(request,id):
-    return render(request,'profilepage.html')
+    obj = User.objects.get(id=id)
+    profileobj = obj.posts.all()
+    return render(request,'profilepage.html',{'profileobj':profileobj,'obj':obj})
+
+

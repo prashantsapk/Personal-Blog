@@ -1,5 +1,13 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-hi
+<h1>{{obj.username}} User's Profile</h1>
+
+{% for i in profileobj %}
+{{i.title}}<br>
+<img src="{{i.image.url}}"> <br>
+{{i.description}}<br>
+{% endfor %}
+
+
 {% endblock content %}
