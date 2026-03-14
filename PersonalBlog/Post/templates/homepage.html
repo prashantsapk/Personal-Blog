@@ -71,6 +71,7 @@
 
           
            <div class="d-flex gap-2">
+            {% if i.user.id == request.user.id  %}
           <form method="post" action={% url 'deletepost'%}>
             {% csrf_token %}
           <input type="hidden" value={{i.id}} name='id'>
@@ -86,7 +87,7 @@
             {% csrf_token %}
           <button class="btn btn-primary me-md-2" type="sumbit">Comment</button>
           </form>
-
+          {% endif %}
           </div>
           
           <br> Post id : #{{i.id}}<br>

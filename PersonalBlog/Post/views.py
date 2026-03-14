@@ -18,7 +18,9 @@ def createpost(request):
     if request.method=='POST':
         createpostformobj= createpostform(request.POST,request.FILES)
         if createpostformobj.is_valid():
-            post = createpostformobj.save()
+            post = createpostformobj.save(commit=False)
+            post.user=request.user
+            post.save()
             return redirect('homepage')
     else:
         createpostformobj= createpostform()
