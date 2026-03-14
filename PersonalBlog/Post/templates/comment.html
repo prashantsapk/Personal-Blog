@@ -4,7 +4,7 @@
  
 {% for i  in commentobj %}
 
-{{post.user}} : {{i.comment}}<br>
+ {{i.user.username}}: {{i.comment}}<br>
 {% endfor %}
 
 

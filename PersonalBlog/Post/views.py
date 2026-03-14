@@ -89,6 +89,7 @@ def commentview(request,id):
             commentobj = newform.save(commit=False)
             post = Postathomepage.objects.get(id=id)
             commentobj.post = post
+            commentobj.user = request.user 
             commentobj.save()
         
 
@@ -98,7 +99,7 @@ def commentview(request,id):
         post = Postathomepage.objects.get(id=id)
         commentobj=post.comments.all()
         form = commentform()
-        return render(request,'comment.html',{'commentobj':commentobj,'form':form,'post':post})
+        return render(request,'comment.html',{'commentobj':commentobj,'form':form})
 
     return redirect('homepage')
 

@@ -82,12 +82,12 @@
             {% csrf_token %}
           <button class="btn btn-primary me-md-2" type="sumbit">Edit</button>
           </form>
-
+          {% endif %}
           <form action="{% url 'comment' i.id %}" method="get">
             {% csrf_token %}
           <button class="btn btn-primary me-md-2" type="sumbit">Comment</button>
           </form>
-          {% endif %}
+          
           </div>
           
           <br> Post id : #{{i.id}}<br>

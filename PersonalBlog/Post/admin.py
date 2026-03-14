@@ -4,3 +4,5 @@ from .models import Postathomepage,commentofpost
 admin.site.register(Postathomepage)
 admin.site.register(commentofpost)
 
+
+
